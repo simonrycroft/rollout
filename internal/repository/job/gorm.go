@@ -1,20 +1,21 @@
-package jobrepository
+package job
 
 import (
 	"gorm.io/gorm"
-	"rollout/internal/jobdomain"
+	jobdomain "rollout/internal/domain/job"
 )
 
-// JobRepository handles job data persistence
-type JobRepository struct {
+// Repository handles job storage
+type Repository struct {
 	db *gorm.DB
 }
 
-func NewJobRepository(db *gorm.DB) *JobRepository {
-	return &JobRepository{db}
+// NewRepository creates a new job repository
+func NewRepository(db *gorm.DB) *Repository {
+	return &Repository{db}
 }
 
-// Job defines the jobdomain database model
+// Job defines the job database model
 type Job struct {
 	gorm.Model
 	Name   string
@@ -22,13 +23,14 @@ type Job struct {
 }
 
 // Save saves a job
-func (r JobRepository) Save(job *jobdomain.Job) error {
-	r.db.Create(job)
+func (r Repository) Save(job *jobdomain.Job) error {
+	// TODO creating vs updating
+	r.db.Create(toGorm(job))
 	return nil
 }
 
 // ListAll lists all jobs
-func (r JobRepository) ListAll() ([]*jobdomain.Job, error) {
+func (r Repository) ListAll() ([]*jobdomain.Job, error) {
 	return []*jobdomain.Job{&jobdomain.Job{}}, nil
 }
 
