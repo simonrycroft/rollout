@@ -1,0 +1,51 @@
+openapi: 3.0.3
+info:
+  title: Rollout REST API
+  description: Rollout REST API
+  version: 0.0.1
+servers:
+  - url: 'http://localhost:8080'
+    description: Local dev server
+paths:
+  /folders:
+    post:
+      summary: Create a new folder
+      description: Creates a new folder with the specified parent folder ID and name.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parent_id:
+                  type: integer
+                  description: The ID of the parent folder.
+                name:
+                  type: string
+                  description: The name of the new folder.
+              required:
+                - name
+      responses:
+        '201':
+          description: Folder created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    description: The ID of the newly created folder.
+                  parent_id:
+                    type: integer
+                    description: The ID of the parent folder.
+                  name:
+                    type: string
+                    description: The name of the newly created folder.
+        '400':
+          description: Bad request. Invalid input data.
+        '500':
+          description: Internal server error
+
+  
