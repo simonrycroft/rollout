@@ -1,6 +1,6 @@
 package folder
 
-type FolderRepository interface {
+type Repository interface {
 	Save(f *Folder) error
-	ListAll() ([]*Folder, error)
+	//ListAll() ([]*Folder, error)
 }

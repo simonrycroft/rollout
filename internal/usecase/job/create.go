@@ -3,14 +3,13 @@ package job
 import (
 	"fmt"
 	jobdomain "rollout/internal/domain/job"
-	jobrepo "rollout/internal/repository/job"
 )
 
 type Create struct {
-	repo *jobrepo.Repository
+	repo jobdomain.Repository
 }
 
-func NewCreate(repo *jobrepo.Repository) *Create {
+func NewCreate(repo jobdomain.Repository) *Create {
 	return &Create{repo}
 }
 

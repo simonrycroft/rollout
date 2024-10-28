@@ -3,14 +3,17 @@ package folder
 import (
 	"fmt"
 	folderdomain "rollout/internal/domain/folder"
-	folderrepo "rollout/internal/repository/folder"
 )
 
-type Create struct {
-	repo *folderrepo.Repository
+type Creator interface {
+	Execute(parentID uint, name string) (*folderdomain.Folder, error)
 }
 
-func NewCreate(repo *folderrepo.Repository) *Create {
+type Create struct {
+	repo folderdomain.Repository
+}
+
+func NewCreate(repo folderdomain.Repository) *Create {
 	return &Create{
 		repo: repo,
 	}

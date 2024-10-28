@@ -26,7 +26,7 @@ The next layer, containing all the application-specific business rules that defi
 The next layer, responsible for translating data between use cases and external systems like the web, databases or user interfaces.  In the case of Rollout, we have:
 
 - **Controllers**: handle incoming HTTP requests, decode their JSON payloads, and hand off to Use Cases to handle application logic.
-- **Repositories**: implementations of repository interfaces (defined in Use Cases) that handle data persistence e.g. database read/write operations.
+- **Repositories**: implementations of repository interfaces (defined in Domain Models) that handle data persistence e.g. database read/write operations.
 
 #### Frameworks & Drivers
 The outermost layer, which includes actual implementation details, like web servers and APIs.  In Rollout's design, we have the HTTP API layer that starts up the web server, defines routes and the controllers that handle them.

@@ -42,7 +42,7 @@ func main() {
 	server := http.NewServer(folderCtrl)
 
 	// Start server
-	if err := server.Start(8080); err != nil {
+	if err := server.Start(8181); err != nil {
 		log.Fatal("Server failed to start:", err)
 	}
 }

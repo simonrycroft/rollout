@@ -7,16 +7,15 @@ import (
 )
 
 type Controller struct {
-	folderCreator *folder.Create
+	folderCreator folder.Creator
 }
 
-func NewController(folderCreator *folder.Create) *Controller {
+func NewController(folderCreator folder.Creator) *Controller {
 	return &Controller{
 		folderCreator: folderCreator,
 	}
 }
 
-// TODO why is the response a value but the request a pointer?
 func (c *Controller) CreateFolder(w http.ResponseWriter, r *http.Request) {
 	var request struct {
 		ParentID uint   `json:"parent_id"`
